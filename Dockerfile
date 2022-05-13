@@ -27,7 +27,7 @@ ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 ENV JRE_HOME=/usr/lib/jvm/java-8-openjdk-amd64/jre
 
 WORKDIR /home/nagarjuna/tomcat/webapps
-COPY /home/ubuntu/shopieasy.war /home/nagarjuna/tomcat/webapps
+COPY shopieasy.war* /home/nagarjuna/tomcat/webapps
 
 RUN chown nagarjuna:nagarjuna -R /home/nagarjuna/tomcat/
 RUN chmod 755 -R /home/nagarjuna/tomcat/
