@@ -159,12 +159,8 @@
 	</dependency>
 	
 	</dependencies>
-	<distributionManagement>
-	<snapshotRepository>
-		<id>online-shopy-snapshots</id>
-		<name>online-shopy-snapshot-repo</name>
-		<url>http://44.202.254.224:8081/repository/online-shopy-snapshot-repo/</url>
-	</snapshotRepository> 
-	</distributionManagement>
+	<build>
+		<finalName>shopieasy</finalName>
+	</build>
 	<artifactId>shopieasy</artifactId>
 </project>
