@@ -25,7 +25,7 @@ RUN rm -rf apache-tomcat-8.5.78
 RUN rm -rf apache*.tar.gz
 
 WORKDIR /home/madhu/tomcat/webapps
-COPY target/ShopiEasy.war /home/madhu/tomcat/webapps
+COPY target/shopieasy.war /home/madhu/tomcat/webapps/
 
 RUN chown -R madhu:madhu /home/madhu/tomcat/
 RUN chmod -R 755 /home/madhu/tomcat/
