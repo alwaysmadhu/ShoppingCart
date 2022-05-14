@@ -6,7 +6,7 @@ RUN apt-get update -y
 RUN apt-get install wget -y
 RUN apt-get install curl -y
 RUN apt-get install vim -y
-run apt-get install sudo -y
+RUN apt-get install sudo -y
 RUN apt-get install openjdk-8-jdk -y
 RUN java -version
 
@@ -26,7 +26,7 @@ RUN rm -rf apache*.tar.gz
 
 WORKDIR /home/madhu/tomcat/webapps
 
-COPY shopieasy.war /home/madhu/tomcat/webapps
+COPY target/shopieasy.war /home/madhu/tomcat/webapps
 
 RUN chown -R madhu:madhu /home/madhu/tomcat/
 RUN chmod -R 755 /home/madhu/tomcat/
