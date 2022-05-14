@@ -29,7 +29,7 @@ WORKDIR /home/madhu/tomcat/webapps
 RUN chown -R madhu:madhu /home/madhu/tomcat/
 RUN chmod -R 755 /home/madhu/tomcat/
 
-COPY shopieasy.war .
+COPY target/shopieasy.war .
 
 EXPOSE 8080
 
