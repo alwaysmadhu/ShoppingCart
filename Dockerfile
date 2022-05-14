@@ -1,3 +1,15 @@
+FROM ubuntu:18.04
+
+USER root
+
+RUN apt-get update -y
+RUN apt-get install wget -y
+RUN apt-get install curl -y
+RUN apt-get install vim -y
+run apt-get install sudo -y
+RUN apt-get install openjdk-8-jdk -y
+RUN java -version
+
 ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 ENV JRE_HOME=/usr/lib/jvm/java-8-openjdk-amd64/jre
 
