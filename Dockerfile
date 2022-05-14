@@ -1,36 +1,38 @@
 FROM ubuntu:18.04
 
-USER root
+MAINTAINER nagarjuna.madineedi@outlook.com
 
+LABEL Trainer="Nagarjuna Madineedi"
+LABEL Course="DevOps"
+
+USER root
 RUN apt-get update -y
 RUN apt-get install wget -y
 RUN apt-get install curl -y
-RUN apt-get install vim -y
-RUN apt-get install sudo -y
-RUN apt-get install openjdk-8-jdk -y
+RUN useradd -s /bin/bash -d /home/nagarjuna/ -m -G sudo nagarjuna
+RUN mkdir -p /home/nagarjuna/tomcat
+
+WORKDIR /home/nagarjuna/tomcat
+
+ADD https://dlcdn.apache.org/tomcat/tomcat-8/v8.5.78/bin/apache-tomcat-8.5.78.tar.gz /home/nagarjuna/tomcat
+
+RUN tar xvfz apache*.tar.gz
+RUN mv apache-tomcat-8.5.78/* /home/nagarjuna/tomcat/
+RUN apt-get -y install openjdk-8-jdk
 RUN java -version
+RUN rm -rf /home/nagarjuna/tomcat/apache-tomcat-8.5.78
+RUN rm -rf /home/nagarjuna/tomcat/apache-tomcat-8.5.78.tar.gz
 
 ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 ENV JRE_HOME=/usr/lib/jvm/java-8-openjdk-amd64/jre
 
-RUN useradd -s /bin/bash -d /home/madhu/ -m -G sudo madhu
-RUN mkdir -p /home/madhu/tomcat
+WORKDIR /home/nagarjuna/tomcat/webapps
+COPY target/shopieasy.war /home/nagarjuna/tomcat/webapps
 
-WORKDIR /home/madhu/tomcat
-
-ADD https://dlcdn.apache.org/tomcat/tomcat-8/v8.5.78/bin/apache-tomcat-8.5.78.tar.gz .
-RUN tar -zxvf apache*.tar.gz
-RUN mv apache-tomcat-8.5.78/* /home/madhu/tomcat/
-RUN rm -rf apache-tomcat-8.5.78
-RUN rm -rf apache*.tar.gz
-
-WORKDIR /home/madhu/tomcat/webapps/
-COPY shopieasy.war /home/madhu/tomcat/webapps/
-
-RUN chown -R madhu:madhu /home/madhu/tomcat/
-RUN chmod -R 755 /home/madhu/tomcat/
+RUN chown nagarjuna:nagarjuna -R /home/nagarjuna/tomcat/
+RUN chmod 755 -R /home/nagarjuna/tomcat/
 
 EXPOSE 8080
 
-USER madhu
-CMD ["/home/madhu/tomcat/bin/catalina.sh", "run"]
+USER nagarjuna
+CMD ["/home/nagarjuna/tomcat/bin/catalina.sh", "run"]
